@@ -2,6 +2,7 @@ import 'package:bloc_widgets/bloc_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:solvro_mobile_rekru/app/theme.dart';
 import 'package:solvro_mobile_rekru/feature/login/presentation/bloc/login_cubit.dart';
+import 'package:solvro_mobile_rekru/feature/register/presentation/screens/register_screen.dart';
 import 'package:solvro_mobile_rekru/shared/utils/string_regexp.dart';
 
 class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
@@ -44,7 +45,9 @@ class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
                     decorationColor: Colors.white
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (_) => RegisterScreen()));
+                },
               ),
             ],
           ),
