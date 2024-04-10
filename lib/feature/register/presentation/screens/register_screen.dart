@@ -1,6 +1,7 @@
 import 'package:bloc_widgets/bloc_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:solvro_mobile_rekru/app/theme.dart';
+import 'package:solvro_mobile_rekru/feature/main/presentation/screens/main_screen.dart';
 import 'package:solvro_mobile_rekru/feature/register/presentation/bloc/register_cubit.dart';
 import 'package:solvro_mobile_rekru/shared/utils/string_regexp.dart';
 
@@ -14,6 +15,24 @@ class RegisterScreen extends BlocConsumerWidget<RegisterCubit, RegisterState> {
 
   final ValueNotifier<bool> isLoading = ValueNotifier(false);
   final ValueNotifier<bool> isObscured = ValueNotifier(true);
+
+
+  @override
+  void listener(BuildContext context, RegisterCubit bloc, RegisterState state) {
+    state.maybeMap(
+      error: (state) {
+        isLoading.value = false;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+      },
+      loading: (state) => isLoading.value = true,
+      success: (state) {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => const MainScreen()));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('Yippee')));
+      },
+      orElse: () => isLoading.value = (state is Loading),
+    );
+  }
 
   @override
   Widget buildWithState(context, bloc, state) {
@@ -44,7 +63,9 @@ class RegisterScreen extends BlocConsumerWidget<RegisterCubit, RegisterState> {
                     decorationColor: Colors.white
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context);
+              },
             ),
           ],
         ),
@@ -103,7 +124,7 @@ class RegisterScreen extends BlocConsumerWidget<RegisterCubit, RegisterState> {
                     return null;
                   },
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 ValueListenableBuilder(
                     valueListenable: isLoading,
                     builder: (_, isLoading, __) {
@@ -111,9 +132,9 @@ class RegisterScreen extends BlocConsumerWidget<RegisterCubit, RegisterState> {
                         width: 200,
                         child: ElevatedButton(
                           style: theme.flatButtonThemeInverted,
-                          // onPressed:
-                          // isLoading ? null : () => _validateAndRegister(bloc, dbRepository),
-                          onPressed: () {  },
+                          onPressed:
+                          isLoading ? null : () => _validateAndRegister(bloc),
+                          // onPressed: () {  },
                           child: Text(
                             'Register',
                             style: TextStyle(
@@ -128,5 +149,11 @@ class RegisterScreen extends BlocConsumerWidget<RegisterCubit, RegisterState> {
             );
           }),
     );
+  }
+
+  _validateAndRegister(RegisterCubit bloc) {
+    if (formKey.currentState!.validate()) {
+      bloc.registerWithEmail(emailKey.currentState!.value, passwordKey.currentState!.value);
+    }
   }
 }

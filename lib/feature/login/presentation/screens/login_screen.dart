@@ -5,6 +5,8 @@ import 'package:solvro_mobile_rekru/feature/login/presentation/bloc/login_cubit.
 import 'package:solvro_mobile_rekru/feature/register/presentation/screens/register_screen.dart';
 import 'package:solvro_mobile_rekru/shared/utils/string_regexp.dart';
 
+import '../../../main/presentation/screens/main_screen.dart';
+
 class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
   LoginScreen({super.key});
 
@@ -14,6 +16,20 @@ class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
 
   final ValueNotifier<bool> isLoading = ValueNotifier(false);
   final ValueNotifier<bool> isObscured = ValueNotifier(true);
+
+  @override
+  void listener(BuildContext context, LoginCubit bloc, LoginState state) {
+    state.maybeMap(
+      error: (state) {
+        isLoading.value = false;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+      },
+      success: (state) =>
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const MainScreen())),
+      loading: (state) => isLoading.value = true,
+      orElse: () => isLoading.value = (state is Loading),
+    );
+  }
 
   @override
   Widget buildWithState(context, bloc, state) {
@@ -94,8 +110,7 @@ class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
       ValueListenableBuilder(
         builder: (_, isLoading, __) => ElevatedButton(
           style: theme.flatButtonThemeInverted,
-          // onPressed: isLoading ? null : () => _validateAndLogin(bloc),
-          onPressed: () {},
+          onPressed: isLoading ? null : () => _validateAndLogin(bloc),
           child: SizedBox(
             width: double.infinity,
             child: Center(
@@ -112,5 +127,11 @@ class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
         valueListenable: isLoading,
       ),
     ];
+  }
+
+  _validateAndLogin(LoginCubit bloc) {
+    if (formKey.currentState!.validate()) {
+      bloc.loginWithEmail(emailKey.currentState!.value, passwordKey.currentState!.value);
+    }
   }
 }
