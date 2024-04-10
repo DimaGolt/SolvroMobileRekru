@@ -1,18 +1,6 @@
 import 'package:flutter/material.dart';
 
 ThemeData get lightTheme => ThemeData(
-  primarySwatch: const MaterialColor(0xFF68A8C9, <int, Color>{
-    50: Color(0xFFEDF5F9),
-    100: Color(0xFFD2E5EF),
-    200: Color(0xFFB4D4E4),
-    300: Color(0xFF95C2D9),
-    400: Color(0xFF7FB5D1),
-    500: Color(0xFF68A8C9),
-    600: Color(0xFF60A0C3),
-    700: Color(0xFF5597BC),
-    800: Color(0xFF4B8DB5),
-    900: Color(0xFF3A7DA9),
-  }),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
       maximumSize: const Size(double.infinity, 70),
@@ -55,7 +43,18 @@ ThemeData get lightTheme => ThemeData(
     backgroundColor: Color(0xFFE4ECED),
     contentTextStyle: TextStyle(color: Color(0xFF007CBC), fontSize: 16),
     behavior: SnackBarBehavior.floating,
-  ),
+  ), colorScheme: ColorScheme.fromSwatch(primarySwatch: const MaterialColor(0xFF68A8C9, <int, Color>{
+    50: Color(0xFFEDF5F9),
+    100: Color(0xFFD2E5EF),
+    200: Color(0xFFB4D4E4),
+    300: Color(0xFF95C2D9),
+    400: Color(0xFF7FB5D1),
+    500: Color(0xFF68A8C9),
+    600: Color(0xFF60A0C3),
+    700: Color(0xFF5597BC),
+    800: Color(0xFF4B8DB5),
+    900: Color(0xFF3A7DA9),
+  })).copyWith(background: Color(0xFF4B8DB5)),
 );
 
 extension ElevatedButtons on ThemeData {

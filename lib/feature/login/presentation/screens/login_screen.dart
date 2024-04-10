@@ -18,9 +18,6 @@ class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
   Widget buildWithState(context, bloc, state) {
     final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login'),
-      ),
       body: Form(
         key: formKey,
         child: Padding(
@@ -30,12 +27,25 @@ class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
             children: [
               const Text(
                 'Basket buddy',
-                style: TextStyle(fontSize: 46),
+                style: TextStyle(fontSize: 46, color: Colors.white),
               ),
               const SizedBox(
                 height: 46,
               ),
               ..._form(bloc, theme),
+              const SizedBox(height: 32),
+              InkWell(
+                child: const Text(
+                  'Don\'t have an account? Create one now!',
+                  style: TextStyle(
+                    fontSize: 16,
+                    decoration: TextDecoration.underline,
+                    color: Colors.white,
+                    decorationColor: Colors.white
+                  ),
+                ),
+                onTap: () {},
+              ),
             ],
           ),
         ),
