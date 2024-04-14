@@ -6,6 +6,7 @@ import 'package:solvro_mobile_rekru/feature/login/presentation/screens/login_scr
 import 'package:solvro_mobile_rekru/feature/main/presentation/bloc/shopping_list_bloc.dart';
 import 'package:solvro_mobile_rekru/feature/register/presentation/bloc/register_cubit.dart';
 import 'package:solvro_mobile_rekru/shared/domain/repositories/auth_repository.dart';
+import 'package:solvro_mobile_rekru/shared/domain/repositories/shopping_lists_repository.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(create: (_) => AuthRepository.build()),
+        RepositoryProvider(create: (ctx) => ShoppingListsRepository.build(ctx.read<AuthRepository>()))
       ],
       child: MultiBlocProvider(
         providers: [
