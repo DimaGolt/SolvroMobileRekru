@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:solvro_mobile_rekru/app/theme.dart';
+import 'package:solvro_mobile_rekru/feature/items_list/presentation/bloc/items_list_cubit.dart';
 import 'package:solvro_mobile_rekru/feature/login/presentation/bloc/login_cubit.dart';
 import 'package:solvro_mobile_rekru/feature/login/presentation/screens/login_screen.dart';
 import 'package:solvro_mobile_rekru/feature/register/presentation/bloc/register_cubit.dart';
@@ -24,7 +25,8 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider(create: (ctx) => LoginCubit(ctx.read<AuthRepository>())),
           BlocProvider(create: (ctx) => RegisterCubit(ctx.read<AuthRepository>())),
-          BlocProvider(create: (ctx) => ShoppingListBloc(ctx.read<ShoppingListsRepository>()))
+          BlocProvider(create: (ctx) => ShoppingListBloc(ctx.read<ShoppingListsRepository>())),
+          BlocProvider(create: (ctx) => ItemsListCubit())
         ],
         child: MaterialApp(
             title: 'Flutter Demo',

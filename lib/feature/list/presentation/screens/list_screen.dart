@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:solvro_mobile_rekru/feature/items_list/presentation/screens/items_list_screen.dart';
 import 'package:solvro_mobile_rekru/shared/domain/entities/shopping_list.dart';
 
 class ListScreen extends StatelessWidget {
@@ -25,7 +26,10 @@ class ListScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         backgroundColor: list.color,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (_) => const ItemsListScreen()));
+        },
         label: const Row(
           children: [
             Icon(
