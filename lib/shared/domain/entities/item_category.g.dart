@@ -1,21 +1,20 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'shop_item.dart';
+part of 'item_category.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ShopItemImpl _$$ShopItemImplFromJson(Map<String, dynamic> json) =>
-    _$ShopItemImpl(
+_$ItemCategoryImpl _$$ItemCategoryImplFromJson(Map<String, dynamic> json) =>
+    _$ItemCategoryImpl(
       id: json['id'] as int,
       name: json['name'] as String,
-      category: ItemCategory.fromJson(json['category'] as Map<String, dynamic>),
+      show: json['show'] as bool? ?? true,
     );
 
-Map<String, dynamic> _$$ShopItemImplToJson(_$ShopItemImpl instance) =>
+Map<String, dynamic> _$$ItemCategoryImplToJson(_$ItemCategoryImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'category': instance.category,
     };

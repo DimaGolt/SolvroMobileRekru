@@ -2,6 +2,7 @@ import 'package:bloc_widgets/bloc_widgets.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../shared/domain/entities/shopping_list.dart';
+import '../../../list/presentation/screens/list_screen.dart';
 import '../bloc/shopping_list_bloc.dart';
 import '../widgets/create_new_list_dialog.dart';
 
@@ -39,24 +40,29 @@ class ShoppingListsScreen
                     itemCount: state.lists!.length,
                     itemBuilder: (_, index) {
                       ShoppingList list = state.lists![index];
-                      return ListTile(
-                        leading: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              width: 15,
-                              decoration:  BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: list.color,
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (_) => ListScreen(list: list)));
+                        },
+                        child: ListTile(
+                          leading: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Container(
+                                width: 15,
+                                decoration:  BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: list.color,
+                                ),
                               ),
-                            ),
-                            Text(
-                              list.emoji,
-                              style: const TextStyle(fontSize: 32),
-                            ),
-                          ],
+                              Text(
+                                list.emoji,
+                                style: const TextStyle(fontSize: 32),
+                              ),
+                            ],
+                          ),
+                          title: Text(list.name),
                         ),
-                        title: Text(list.name),
                       );
                     },
                     separatorBuilder: (BuildContext context, int index) =>

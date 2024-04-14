@@ -59,60 +59,65 @@ ThemeData get lightTheme => ThemeData(
 
 extension ElevatedButtons on ThemeData {
   ButtonStyle get flatButtonThemeInverted => ElevatedButton.styleFrom(
-    backgroundColor: Colors.white,
-    elevation: 0,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(32),
-    ),
-  );
+        backgroundColor: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(32),
+        ),
+      );
 
   ButtonStyle get elevatedButtonThemeInverted => ElevatedButton.styleFrom(
-    backgroundColor: Colors.white,
-    elevation: 6,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(16),
-    ),
-  );
+        backgroundColor: Colors.white,
+        elevation: 6,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+      );
 
   ButtonStyle get circularButtonThemeInverted => ElevatedButton.styleFrom(
-    backgroundColor: Colors.white,
-    elevation: 0,
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(50),
-    ),
-  );
+        backgroundColor: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+      );
 }
 
 extension LoginDecorations on ThemeData {
-  InputDecoration passwordDecoration({required bool suffixVisible, Function()? onTap}) =>
+  InputDecoration passwordDecoration(
+          {required bool suffixVisible, Function()? onTap}) =>
       InputDecoration(
-        prefixIconConstraints: const BoxConstraints(maxHeight: 32, maxWidth: 32),
-        suffixIconConstraints: const BoxConstraints(maxHeight: 32, maxWidth: 40),
+        prefixIconConstraints:
+            const BoxConstraints(maxHeight: 32, maxWidth: 32),
+        suffixIconConstraints:
+            const BoxConstraints(maxHeight: 32, maxWidth: 40),
         prefixIcon: const Icon(Icons.key, size: 32),
         suffixIcon: suffixVisible
             ? InkWell(
-          onTap: onTap,
-          child: const Icon(Icons.visibility, size: 32),
-        )
+                onTap: onTap,
+                child: const Icon(Icons.visibility, size: 32),
+              )
             : null,
         hintText: '******',
       );
 
   InputDecoration emailDecoration() => const InputDecoration(
-    prefixIconConstraints: BoxConstraints(maxHeight: 32, maxWidth: 32),
-    prefixIcon: Icon(Icons.account_circle, size: 32),
-    hintText: 'example@email.com',
-  );
+        prefixIconConstraints: BoxConstraints(maxHeight: 32, maxWidth: 32),
+        prefixIcon: Icon(Icons.account_circle, size: 32),
+        hintText: 'example@email.com',
+      );
 
   InputDecoration emailForgotDecoration() => InputDecoration(
-    border: UnderlineInputBorder(borderSide: BorderSide(color: lightTheme.primaryColor)),
-    enabledBorder:
-    UnderlineInputBorder(borderSide: BorderSide(color: lightTheme.primaryColor)),
-    focusedBorder:
-    UnderlineInputBorder(borderSide: BorderSide(color: lightTheme.primaryColor)),
-    prefixIconConstraints: const BoxConstraints(maxHeight: 32, maxWidth: 32),
-    prefixIconColor: lightTheme.primaryColor,
-    prefixIcon: const Icon(Icons.account_circle, size: 32),
-    hintText: 'example@email.com',
-  );
+        border: UnderlineInputBorder(
+            borderSide: BorderSide(color: lightTheme.primaryColor)),
+        enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: lightTheme.primaryColor)),
+        focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(color: lightTheme.primaryColor)),
+        prefixIconConstraints:
+            const BoxConstraints(maxHeight: 32, maxWidth: 32),
+        prefixIconColor: lightTheme.primaryColor,
+        prefixIcon: const Icon(Icons.account_circle, size: 32),
+        hintText: 'example@email.com',
+      );
 }
