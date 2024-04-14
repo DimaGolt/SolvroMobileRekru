@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../shared/domain/entities/shopping_list.dart';
 import '../bloc/shopping_list_bloc.dart';
+import '../widgets/create_new_list_dialog.dart';
 
 class ShoppingListsScreen
     extends BlocConsumerWidget<ShoppingListBloc, ShoppingListState> {
@@ -44,9 +45,9 @@ class ShoppingListsScreen
                           children: [
                             Container(
                               width: 15,
-                              decoration: const BoxDecoration(
+                              decoration:  BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.red,
+                                color: list.color,
                               ),
                             ),
                             Text(
@@ -63,7 +64,13 @@ class ShoppingListsScreen
                   ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          showCreateNewListDialog(context).then((value) {
+            if ((value as ShoppingList?) != null) {
+              bloc.add(ShoppingListEvent.create(value!));
+            }
+          });
+        },
         label: const Row(
           children: [
             Icon(

@@ -15,12 +15,12 @@ class RemoteShoppingListsRepository implements ShoppingListsRepository{
     final result = await http.post(
       Uri.parse('https://basket-buddy-solvro-api.kowalinski.dev/api/v1/shopping-lists/'),
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
+        'Content-Type': 'application/json',
         'Authorization': 'Token ${_authRepository.user!.token}'
       },
-      body: list.toJson(),
+      body: jsonEncode(list.toJson()),
     );
-    if (result.statusCode == 200) {
+    if (result.statusCode == 201) {
       final createdList = ShoppingList.fromJson(jsonDecode(result.body));
       return createdList;
     } else {
