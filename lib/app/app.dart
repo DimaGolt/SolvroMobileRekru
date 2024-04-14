@@ -11,19 +11,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authRepository = AuthRepository.build();
 
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
       providers: [
-        BlocProvider(create: (_) => LoginCubit(authRepository)),
-        BlocProvider(create: (_) => RegisterCubit(authRepository)),
+        RepositoryProvider(create: (_) => AuthRepository.build()),
       ],
-      child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: lightTheme,
-          home: LoginScreen(),
-        )
-      ,
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (ctx) => LoginCubit(ctx.read<AuthRepository>())),
+          BlocProvider(create: (ctx) => RegisterCubit(ctx.read<AuthRepository>())),
+        ],
+        child: MaterialApp(
+            title: 'Flutter Demo',
+            theme: lightTheme,
+            home: LoginScreen(),
+          )
+        ,
+      ),
     );
   }
 }

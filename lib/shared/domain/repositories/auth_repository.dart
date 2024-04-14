@@ -2,7 +2,7 @@ import '../../data/app_auth_repository.dart';
 import '../entities/user_entity.dart';
 
 abstract class AuthRepository {
-
+  User? get user;
 
   Future<User> createUserWithEmail(String email, String password);
 
