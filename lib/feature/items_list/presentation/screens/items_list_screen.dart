@@ -93,9 +93,12 @@ class ItemsListScreen
               shrinkWrap: true,
               itemBuilder: (_, index) {
                 final item = items[index];
-                return ListTile(
-                  title: Text(item.name),
-                  subtitle: Text('Category: ${item.category.name}'),
+                return GestureDetector(
+                  onTap: () => bloc.pickItem(item),
+                  child: ListTile(
+                    title: Text(item.name),
+                    subtitle: Text('Category: ${item.category.name}'),
+                  ),
                 );
               },
               separatorBuilder: (_, __) => const Divider(height: 1),

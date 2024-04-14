@@ -10,42 +10,62 @@ part 'items_list_cubit.freezed.dart';
 
 class ItemsListCubit extends Cubit<ItemsListState> {
   final ShoppingListsRepository _listsRepository;
-  List<ShopItem> items = [];
-  List<ShopItem> itemsToShow = [];
-  List<ItemCategory> categories = [];
+  List<ShopItem> _items = [];
+  List<ShopItem> _itemsToShow = [];
+  List<ItemCategory> _categories = [];
+  final List<ShopItem> chosenItems = [];
 
   ItemsListCubit(this._listsRepository) : super(const ItemsListState.initial());
 
   void fetchItems() async {
     emit(const ItemsListState.loading());
     try {
-      items = await _listsRepository.getItems();
-      itemsToShow = items;
-      categories = items.map((e) => e.category).toSet().toList();
+      _items = await _listsRepository.getItems();
+      _itemsToShow = _items;
+      _categories = _items.map((e) => e.category).toSet().toList();
     } catch (e) {
       emit(ItemsListState.error(e.toString()));
       return;
     }
-    emit(ItemsListState.success(itemsToShow, categories));
+    emit(ItemsListState.success(_itemsToShow, _categories));
   }
 
   void updateCategories(List<ItemCategory> changedCategories) {
     emit(const ItemsListState.loading());
-    categories = changedCategories;
-    itemsToShow = items
-        .where((element) => categories.contains(element.category))
+    _categories = changedCategories;
+    _itemsToShow = _items
+        .where((element) => _categories.contains(element.category))
         .toList();
-    emit(ItemsListState.success(itemsToShow, categories));
+    emit(ItemsListState.success(_itemsToShow, _categories));
   }
 
   void search(String text){
     emit(const ItemsListState.loading());
-    itemsToShow = items
-        .where((element) => categories.contains(element.category))
+    _itemsToShow = _items
+        .where((element) => _categories.contains(element.category))
         .toList();
     if(text != ''){
-      itemsToShow.removeWhere((element) => !element.name.contains(text));
+      _itemsToShow.removeWhere((element) => !element.name.contains(text));
     }
-    emit(ItemsListState.success(itemsToShow, categories));
+    emit(ItemsListState.success(_itemsToShow, _categories));
+  }
+
+  void pickItem(ShopItem item){
+    emit(const ItemsListState.loading());
+    chosenItems.add(item);
+    _items.removeWhere((e) => e.id == item.id);
+    _itemsToShow = _items
+        .where((element) => _categories.contains(element.category))
+        .toList();
+
+    emit(ItemsListState.success(_itemsToShow, _categories));
+  }
+
+  void reset() {
+    _items = [];
+    _itemsToShow = [];
+    _categories = [];
+    chosenItems.removeWhere((element) => true);
+    emit(const ItemsListState.initial());
   }
 }
