@@ -3,7 +3,6 @@ import 'package:solvro_mobile_rekru/shared/domain/entities/user_entity.dart';
 import 'package:solvro_mobile_rekru/shared/domain/repositories/auth_repository.dart';
 
 class AppAuthRepository implements AuthRepository {
-
   final _remote = RemoteAuthRepository();
 
   @override
@@ -17,5 +16,8 @@ class AppAuthRepository implements AuthRepository {
     final user = await _remote.loginEmail(email, password);
     return user;
   }
+
+  @override
+  User? get user => _remote.user;
 
 }

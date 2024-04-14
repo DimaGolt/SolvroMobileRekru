@@ -5,6 +5,8 @@ import 'package:solvro_mobile_rekru/shared/domain/repositories/auth_repository.d
 import 'package:http/http.dart' as http;
 
 class RemoteAuthRepository implements AuthRepository {
+  User? _user;
+
   @override
   Future<User> createUserWithEmail(String email, String password) async {
     final result = await http.post(
@@ -18,7 +20,8 @@ class RemoteAuthRepository implements AuthRepository {
       }),
     );
     if (result.statusCode == 200) {
-      return User.fromJson(jsonDecode(result.body));
+      _user = User.fromJson(jsonDecode(result.body));
+      return user!;
     } else {
       throw Exception('Failed to register');
     }
@@ -37,10 +40,14 @@ class RemoteAuthRepository implements AuthRepository {
       }),
     );
     if (result.statusCode == 200) {
-      return User.fromJson(jsonDecode(result.body));
+      _user = User.fromJson(jsonDecode(result.body));
+      return user!;
     } else {
       throw Exception('Failed to login');
     }
   }
+
+  @override
+  User? get user => _user;
 
 }
