@@ -20,9 +20,12 @@ ShoppingList _$ShoppingListFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ShoppingList {
+  @JsonKey(includeToJson: false)
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get emoji => throw _privateConstructorUsedError;
+  @ColorConverter()
+  Color get color => throw _privateConstructorUsedError;
   bool get isActive => throw _privateConstructorUsedError;
   List<ShopItem> get items => throw _privateConstructorUsedError;
 
@@ -39,7 +42,12 @@ abstract class $ShoppingListCopyWith<$Res> {
       _$ShoppingListCopyWithImpl<$Res, ShoppingList>;
   @useResult
   $Res call(
-      {int id, String name, String emoji, bool isActive, List<ShopItem> items});
+      {@JsonKey(includeToJson: false) int id,
+      String name,
+      String emoji,
+      @ColorConverter() Color color,
+      bool isActive,
+      List<ShopItem> items});
 }
 
 /// @nodoc
@@ -58,6 +66,7 @@ class _$ShoppingListCopyWithImpl<$Res, $Val extends ShoppingList>
     Object? id = null,
     Object? name = null,
     Object? emoji = null,
+    Object? color = null,
     Object? isActive = null,
     Object? items = null,
   }) {
@@ -74,6 +83,10 @@ class _$ShoppingListCopyWithImpl<$Res, $Val extends ShoppingList>
           ? _value.emoji
           : emoji // ignore: cast_nullable_to_non_nullable
               as String,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as Color,
       isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
@@ -95,7 +108,12 @@ abstract class _$$ShoppingListImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, String name, String emoji, bool isActive, List<ShopItem> items});
+      {@JsonKey(includeToJson: false) int id,
+      String name,
+      String emoji,
+      @ColorConverter() Color color,
+      bool isActive,
+      List<ShopItem> items});
 }
 
 /// @nodoc
@@ -112,6 +130,7 @@ class __$$ShoppingListImplCopyWithImpl<$Res>
     Object? id = null,
     Object? name = null,
     Object? emoji = null,
+    Object? color = null,
     Object? isActive = null,
     Object? items = null,
   }) {
@@ -128,6 +147,10 @@ class __$$ShoppingListImplCopyWithImpl<$Res>
           ? _value.emoji
           : emoji // ignore: cast_nullable_to_non_nullable
               as String,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as Color,
       isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
@@ -141,12 +164,14 @@ class __$$ShoppingListImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$ShoppingListImpl implements _ShoppingList {
   _$ShoppingListImpl(
-      {required this.id,
+      {@JsonKey(includeToJson: false) required this.id,
       required this.name,
       required this.emoji,
+      @ColorConverter() required this.color,
       required this.isActive,
       final List<ShopItem> items = const []})
       : _items = items;
@@ -155,11 +180,15 @@ class _$ShoppingListImpl implements _ShoppingList {
       _$$ShoppingListImplFromJson(json);
 
   @override
+  @JsonKey(includeToJson: false)
   final int id;
   @override
   final String name;
   @override
   final String emoji;
+  @override
+  @ColorConverter()
+  final Color color;
   @override
   final bool isActive;
   final List<ShopItem> _items;
@@ -173,7 +202,7 @@ class _$ShoppingListImpl implements _ShoppingList {
 
   @override
   String toString() {
-    return 'ShoppingList(id: $id, name: $name, emoji: $emoji, isActive: $isActive, items: $items)';
+    return 'ShoppingList(id: $id, name: $name, emoji: $emoji, color: $color, isActive: $isActive, items: $items)';
   }
 
   @override
@@ -184,6 +213,7 @@ class _$ShoppingListImpl implements _ShoppingList {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.emoji, emoji) || other.emoji == emoji) &&
+            (identical(other.color, color) || other.color == color) &&
             (identical(other.isActive, isActive) ||
                 other.isActive == isActive) &&
             const DeepCollectionEquality().equals(other._items, _items));
@@ -191,7 +221,7 @@ class _$ShoppingListImpl implements _ShoppingList {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, emoji, isActive,
+  int get hashCode => Object.hash(runtimeType, id, name, emoji, color, isActive,
       const DeepCollectionEquality().hash(_items));
 
   @JsonKey(ignore: true)
@@ -210,9 +240,10 @@ class _$ShoppingListImpl implements _ShoppingList {
 
 abstract class _ShoppingList implements ShoppingList {
   factory _ShoppingList(
-      {required final int id,
+      {@JsonKey(includeToJson: false) required final int id,
       required final String name,
       required final String emoji,
+      @ColorConverter() required final Color color,
       required final bool isActive,
       final List<ShopItem> items}) = _$ShoppingListImpl;
 
@@ -220,11 +251,15 @@ abstract class _ShoppingList implements ShoppingList {
       _$ShoppingListImpl.fromJson;
 
   @override
+  @JsonKey(includeToJson: false)
   int get id;
   @override
   String get name;
   @override
   String get emoji;
+  @override
+  @ColorConverter()
+  Color get color;
   @override
   bool get isActive;
   @override

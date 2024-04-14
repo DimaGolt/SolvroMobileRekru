@@ -11,6 +11,7 @@ _$ShoppingListImpl _$$ShoppingListImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       name: json['name'] as String,
       emoji: json['emoji'] as String,
+      color: const ColorConverter().fromJson(json['color'] as String),
       isActive: json['isActive'] as bool,
       items: (json['items'] as List<dynamic>?)
               ?.map((e) => ShopItem.fromJson(e as Map<String, dynamic>))
@@ -20,9 +21,9 @@ _$ShoppingListImpl _$$ShoppingListImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ShoppingListImplToJson(_$ShoppingListImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'name': instance.name,
       'emoji': instance.emoji,
+      'color': const ColorConverter().toJson(instance.color),
       'isActive': instance.isActive,
-      'items': instance.items,
+      'items': instance.items.map((e) => e.toJson()).toList(),
     };

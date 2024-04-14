@@ -31,6 +31,6 @@ class ShoppingListBloc extends Bloc<ShoppingListEvent, ShoppingListState> {
   _createList(ShoppingList list, Emitter<ShoppingListState> emit) async {
     emit(state.copyWith(isLoading: true));
     await _listsRepository.createList(list);
-    _loadLists(emit);
+    await _loadLists(emit);
   }
 }
