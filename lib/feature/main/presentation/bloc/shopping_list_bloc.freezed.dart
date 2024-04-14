@@ -18,33 +18,39 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ShoppingListEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() load,
+    required TResult Function(ShoppingList list) create,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? load,
+    TResult? Function(ShoppingList list)? create,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? load,
+    TResult Function(ShoppingList list)? create,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Load value) load,
+    required TResult Function(_Create value) create,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Create value)? create,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Load value)? load,
+    TResult Function(_Create value)? create,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -69,35 +75,34 @@ class _$ShoppingListEventCopyWithImpl<$Res, $Val extends ShoppingListEvent>
 }
 
 /// @nodoc
-abstract class _$$StartedImplCopyWith<$Res> {
-  factory _$$StartedImplCopyWith(
-          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
-      __$$StartedImplCopyWithImpl<$Res>;
+abstract class _$$LoadImplCopyWith<$Res> {
+  factory _$$LoadImplCopyWith(
+          _$LoadImpl value, $Res Function(_$LoadImpl) then) =
+      __$$LoadImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$StartedImplCopyWithImpl<$Res>
-    extends _$ShoppingListEventCopyWithImpl<$Res, _$StartedImpl>
-    implements _$$StartedImplCopyWith<$Res> {
-  __$$StartedImplCopyWithImpl(
-      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
+class __$$LoadImplCopyWithImpl<$Res>
+    extends _$ShoppingListEventCopyWithImpl<$Res, _$LoadImpl>
+    implements _$$LoadImplCopyWith<$Res> {
+  __$$LoadImplCopyWithImpl(_$LoadImpl _value, $Res Function(_$LoadImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$StartedImpl implements _Started {
-  const _$StartedImpl();
+class _$LoadImpl implements _Load {
+  const _$LoadImpl();
 
   @override
   String toString() {
-    return 'ShoppingListEvent.started()';
+    return 'ShoppingListEvent.load()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$StartedImpl);
+        (other.runtimeType == runtimeType && other is _$LoadImpl);
   }
 
   @override
@@ -106,27 +111,30 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() started,
+    required TResult Function() load,
+    required TResult Function(ShoppingList list) create,
   }) {
-    return started();
+    return load();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
+    TResult? Function()? load,
+    TResult? Function(ShoppingList list)? create,
   }) {
-    return started?.call();
+    return load?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
+    TResult Function()? load,
+    TResult Function(ShoppingList list)? create,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started();
+    if (load != null) {
+      return load();
     }
     return orElse();
   }
@@ -134,69 +142,189 @@ class _$StartedImpl implements _Started {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
+    required TResult Function(_Load value) load,
+    required TResult Function(_Create value) create,
   }) {
-    return started(this);
+    return load(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Create value)? create,
   }) {
-    return started?.call(this);
+    return load?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
+    TResult Function(_Load value)? load,
+    TResult Function(_Create value)? create,
     required TResult orElse(),
   }) {
-    if (started != null) {
-      return started(this);
+    if (load != null) {
+      return load(this);
     }
     return orElse();
   }
 }
 
-abstract class _Started implements ShoppingListEvent {
-  const factory _Started() = _$StartedImpl;
+abstract class _Load implements ShoppingListEvent {
+  const factory _Load() = _$LoadImpl;
+}
+
+/// @nodoc
+abstract class _$$CreateImplCopyWith<$Res> {
+  factory _$$CreateImplCopyWith(
+          _$CreateImpl value, $Res Function(_$CreateImpl) then) =
+      __$$CreateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ShoppingList list});
+
+  $ShoppingListCopyWith<$Res> get list;
+}
+
+/// @nodoc
+class __$$CreateImplCopyWithImpl<$Res>
+    extends _$ShoppingListEventCopyWithImpl<$Res, _$CreateImpl>
+    implements _$$CreateImplCopyWith<$Res> {
+  __$$CreateImplCopyWithImpl(
+      _$CreateImpl _value, $Res Function(_$CreateImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? list = null,
+  }) {
+    return _then(_$CreateImpl(
+      null == list
+          ? _value.list
+          : list // ignore: cast_nullable_to_non_nullable
+              as ShoppingList,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ShoppingListCopyWith<$Res> get list {
+    return $ShoppingListCopyWith<$Res>(_value.list, (value) {
+      return _then(_value.copyWith(list: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$CreateImpl implements _Create {
+  const _$CreateImpl(this.list);
+
+  @override
+  final ShoppingList list;
+
+  @override
+  String toString() {
+    return 'ShoppingListEvent.create(list: $list)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CreateImpl &&
+            (identical(other.list, list) || other.list == list));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, list);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CreateImplCopyWith<_$CreateImpl> get copyWith =>
+      __$$CreateImplCopyWithImpl<_$CreateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(ShoppingList list) create,
+  }) {
+    return create(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(ShoppingList list)? create,
+  }) {
+    return create?.call(list);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(ShoppingList list)? create,
+    required TResult orElse(),
+  }) {
+    if (create != null) {
+      return create(list);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Load value) load,
+    required TResult Function(_Create value) create,
+  }) {
+    return create(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Load value)? load,
+    TResult? Function(_Create value)? create,
+  }) {
+    return create?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Load value)? load,
+    TResult Function(_Create value)? create,
+    required TResult orElse(),
+  }) {
+    if (create != null) {
+      return create(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Create implements ShoppingListEvent {
+  const factory _Create(final ShoppingList list) = _$CreateImpl;
+
+  ShoppingList get list;
+  @JsonKey(ignore: true)
+  _$$CreateImplCopyWith<_$CreateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$ShoppingListState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  bool get isLoading => throw _privateConstructorUsedError;
+  List<ShoppingList>? get lists => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ShoppingListStateCopyWith<ShoppingListState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -205,6 +333,8 @@ abstract class $ShoppingListStateCopyWith<$Res> {
   factory $ShoppingListStateCopyWith(
           ShoppingListState value, $Res Function(ShoppingListState) then) =
       _$ShoppingListStateCopyWithImpl<$Res, ShoppingListState>;
+  @useResult
+  $Res call({bool isLoading, List<ShoppingList>? lists});
 }
 
 /// @nodoc
@@ -216,100 +346,122 @@ class _$ShoppingListStateCopyWithImpl<$Res, $Val extends ShoppingListState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? lists = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      lists: freezed == lists
+          ? _value.lists
+          : lists // ignore: cast_nullable_to_non_nullable
+              as List<ShoppingList>?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$ShoppingListStateImplCopyWith<$Res>
+    implements $ShoppingListStateCopyWith<$Res> {
+  factory _$$ShoppingListStateImplCopyWith(_$ShoppingListStateImpl value,
+          $Res Function(_$ShoppingListStateImpl) then) =
+      __$$ShoppingListStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isLoading, List<ShoppingList>? lists});
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$ShoppingListStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$ShoppingListStateImplCopyWithImpl<$Res>
+    extends _$ShoppingListStateCopyWithImpl<$Res, _$ShoppingListStateImpl>
+    implements _$$ShoppingListStateImplCopyWith<$Res> {
+  __$$ShoppingListStateImplCopyWithImpl(_$ShoppingListStateImpl _value,
+      $Res Function(_$ShoppingListStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? lists = freezed,
+  }) {
+    return _then(_$ShoppingListStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      lists: freezed == lists
+          ? _value._lists
+          : lists // ignore: cast_nullable_to_non_nullable
+              as List<ShoppingList>?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
+class _$ShoppingListStateImpl implements _ShoppingListState {
+  const _$ShoppingListStateImpl(
+      {this.isLoading = false, final List<ShoppingList>? lists})
+      : _lists = lists;
+
+  @override
+  @JsonKey()
+  final bool isLoading;
+  final List<ShoppingList>? _lists;
+  @override
+  List<ShoppingList>? get lists {
+    final value = _lists;
+    if (value == null) return null;
+    if (_lists is EqualUnmodifiableListView) return _lists;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'ShoppingListState.initial()';
+    return 'ShoppingListState(isLoading: $isLoading, lists: $lists)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ShoppingListStateImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            const DeepCollectionEquality().equals(other._lists, _lists));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, isLoading, const DeepCollectionEquality().hash(_lists));
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
+  @pragma('vm:prefer-inline')
+  _$$ShoppingListStateImplCopyWith<_$ShoppingListStateImpl> get copyWith =>
+      __$$ShoppingListStateImplCopyWithImpl<_$ShoppingListStateImpl>(
+          this, _$identity);
 }
 
-abstract class _Initial implements ShoppingListState {
-  const factory _Initial() = _$InitialImpl;
+abstract class _ShoppingListState implements ShoppingListState {
+  const factory _ShoppingListState(
+      {final bool isLoading,
+      final List<ShoppingList>? lists}) = _$ShoppingListStateImpl;
+
+  @override
+  bool get isLoading;
+  @override
+  List<ShoppingList>? get lists;
+  @override
+  @JsonKey(ignore: true)
+  _$$ShoppingListStateImplCopyWith<_$ShoppingListStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
