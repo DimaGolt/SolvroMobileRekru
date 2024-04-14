@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (ctx) => LoginCubit(ctx.read<AuthRepository>())),
           BlocProvider(create: (ctx) => RegisterCubit(ctx.read<AuthRepository>())),
           BlocProvider(create: (ctx) => ShoppingListBloc(ctx.read<ShoppingListsRepository>())),
-          BlocProvider(create: (ctx) => ItemsListCubit())
+          BlocProvider(create: (ctx) => ItemsListCubit(ctx.read<ShoppingListsRepository>()))
         ],
         child: MaterialApp(
             title: 'Flutter Demo',

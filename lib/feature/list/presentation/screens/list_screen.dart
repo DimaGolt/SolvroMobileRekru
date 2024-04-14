@@ -28,7 +28,7 @@ class ListScreen extends StatelessWidget {
         backgroundColor: list.color,
         onPressed: () {
           Navigator.push(context,
-              MaterialPageRoute(builder: (_) => const ItemsListScreen()));
+              MaterialPageRoute(builder: (_) => ItemsListScreen()));
         },
         label: const Row(
           children: [
