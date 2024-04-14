@@ -11,6 +11,7 @@ part 'items_list_cubit.freezed.dart';
 class ItemsListCubit extends Cubit<ItemsListState> {
   final ShoppingListsRepository _listsRepository;
   List<ShopItem> items = [];
+  List<ShopItem> itemsToShow = [];
   List<ItemCategory> categories = [];
 
   ItemsListCubit(this._listsRepository) : super(const ItemsListState.initial());
@@ -19,19 +20,32 @@ class ItemsListCubit extends Cubit<ItemsListState> {
     emit(const ItemsListState.loading());
     try {
       items = await _listsRepository.getItems();
+      itemsToShow = items;
       categories = items.map((e) => e.category).toSet().toList();
     } catch (e) {
       emit(ItemsListState.error(e.toString()));
       return;
     }
-    emit(ItemsListState.success(items, categories));
+    emit(ItemsListState.success(itemsToShow, categories));
   }
 
   void updateCategories(List<ItemCategory> changedCategories) {
     emit(const ItemsListState.loading());
-    List<ShopItem> itemsToShow = items
-        .where((element) => changedCategories.contains(element.category))
+    categories = changedCategories;
+    itemsToShow = items
+        .where((element) => categories.contains(element.category))
         .toList();
-    emit(ItemsListState.success(itemsToShow, changedCategories));
+    emit(ItemsListState.success(itemsToShow, categories));
+  }
+
+  void search(String text){
+    emit(const ItemsListState.loading());
+    itemsToShow = items
+        .where((element) => categories.contains(element.category))
+        .toList();
+    if(text != ''){
+      itemsToShow.removeWhere((element) => !element.name.contains(text));
+    }
+    emit(ItemsListState.success(itemsToShow, categories));
   }
 }

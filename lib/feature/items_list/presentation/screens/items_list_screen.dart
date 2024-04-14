@@ -59,6 +59,13 @@ class ItemsListScreen
   _body(ItemsListCubit bloc) {
     return Column(
       children: [
+         Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SearchBar(
+            leading: const Icon(Icons.search),
+            onChanged: (text) => bloc.search(text),
+          ),
+        ),
         SizedBox(
           height: 150,
           child: Wrap(
