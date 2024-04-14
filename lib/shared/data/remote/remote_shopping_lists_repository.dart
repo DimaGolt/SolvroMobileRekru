@@ -38,7 +38,7 @@ class RemoteShoppingListsRepository implements ShoppingListsRepository{
       },
     );
     if (result.statusCode == 200) {
-      final List<dynamic> lists = jsonDecode(result.body);
+      final List<dynamic> lists = jsonDecode(utf8.decode(result.body.codeUnits));
       return lists.map((e) => ShoppingList.fromJson(e)).toList();
     } else {
       throw Exception('Failed to fetch shopping list: ${result.body}');
