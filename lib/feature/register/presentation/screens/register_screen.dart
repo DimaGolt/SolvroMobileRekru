@@ -1,9 +1,10 @@
 import 'package:bloc_widgets/bloc_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:solvro_mobile_rekru/app/theme.dart';
-import 'package:solvro_mobile_rekru/feature/main/presentation/screens/main_screen.dart';
 import 'package:solvro_mobile_rekru/feature/register/presentation/bloc/register_cubit.dart';
 import 'package:solvro_mobile_rekru/shared/utils/string_regexp.dart';
+
+import '../../../shopping_lists/presentation/screens/shopping_lists_screen.dart';
 
 class RegisterScreen extends BlocConsumerWidget<RegisterCubit, RegisterState> {
   RegisterScreen({super.key});
@@ -26,7 +27,7 @@ class RegisterScreen extends BlocConsumerWidget<RegisterCubit, RegisterState> {
       },
       loading: (state) => isLoading.value = true,
       success: (state) {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => const MainScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => const ShoppingListsScreen()));
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Yippee')));
       },

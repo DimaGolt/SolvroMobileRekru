@@ -42,7 +42,7 @@ packages:
     source: hosted
     version: "8.1.4"
   bloc_widgets:
-    dependency: "direct main"
+    dependency: "direct shopping_lists"
     description:
       name: bloc_widgets
       sha256: "63aa4d6522e3ac669e624b89c38d051a353617353731e0d33c7f36a470c4bd61"
@@ -178,7 +178,7 @@ packages:
     source: hosted
     version: "3.0.3"
   cupertino_icons:
-    dependency: "direct main"
+    dependency: "direct shopping_lists"
     description:
       name: cupertino_icons
       sha256: d57953e10f9f8327ce64a508a355f0b1ec902193f66288e8cb5070e7c47eeb2d
@@ -218,12 +218,12 @@ packages:
     source: hosted
     version: "1.1.0"
   flutter:
-    dependency: "direct main"
+    dependency: "direct shopping_lists"
     description: flutter
     source: sdk
     version: "0.0.0"
   flutter_bloc:
-    dependency: "direct main"
+    dependency: "direct shopping_lists"
     description:
       name: flutter_bloc
       sha256: f0ecf6e6eb955193ca60af2d5ca39565a86b8a142452c5b24d96fb477428f4d2
@@ -252,7 +252,7 @@ packages:
     source: hosted
     version: "2.5.1"
   freezed_annotation:
-    dependency: "direct main"
+    dependency: "direct shopping_lists"
     description:
       name: freezed_annotation
       sha256: c3fd9336eb55a38cc1bbd79ab17573113a8deccd0ecbbf926cca3c62803b5c2d
@@ -284,7 +284,7 @@ packages:
     source: hosted
     version: "2.3.1"
   http:
-    dependency: "direct main"
+    dependency: "direct shopping_lists"
     description:
       name: http
       sha256: a2bbf9d017fcced29139daa8ed2bba4ece450ab222871df93ca9eec6f80c34ba
@@ -324,7 +324,7 @@ packages:
     source: hosted
     version: "0.7.1"
   json_annotation:
-    dependency: "direct main"
+    dependency: "direct shopping_lists"
     description:
       name: json_annotation
       sha256: b10a7b2ff83d83c777edba3c6a0f97045ddadd56c944e1a23a3fdf43a1bf4467

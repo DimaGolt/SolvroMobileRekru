@@ -1,12 +1,12 @@
 import 'package:bloc_widgets/bloc_widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:solvro_mobile_rekru/feature/main/presentation/bloc/shopping_list_bloc.dart';
 
 import '../../../../shared/domain/entities/shopping_list.dart';
+import '../bloc/shopping_list_bloc.dart';
 
-class MainScreen
+class ShoppingListsScreen
     extends BlocConsumerWidget<ShoppingListBloc, ShoppingListState> {
-  const MainScreen({super.key});
+  const ShoppingListsScreen({super.key});
 
   @override
   void onMount(ShoppingListBloc bloc) {

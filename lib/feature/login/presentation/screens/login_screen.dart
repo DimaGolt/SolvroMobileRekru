@@ -5,7 +5,7 @@ import 'package:solvro_mobile_rekru/feature/login/presentation/bloc/login_cubit.
 import 'package:solvro_mobile_rekru/feature/register/presentation/screens/register_screen.dart';
 import 'package:solvro_mobile_rekru/shared/utils/string_regexp.dart';
 
-import '../../../main/presentation/screens/main_screen.dart';
+import '../../../shopping_lists/presentation/screens/shopping_lists_screen.dart';
 
 class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
   LoginScreen({super.key});
@@ -25,7 +25,7 @@ class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
       },
       success: (state) =>
-          Navigator.push(context, MaterialPageRoute(builder: (_) => const MainScreen())),
+          Navigator.push(context, MaterialPageRoute(builder: (_) => const ShoppingListsScreen())),
       loading: (state) => isLoading.value = true,
       orElse: () => isLoading.value = (state is Loading),
     );
