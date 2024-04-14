@@ -25,7 +25,7 @@ class LoginScreen extends BlocConsumerWidget<LoginCubit, LoginState> {
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
       },
       success: (state) =>
-          Navigator.push(context, MaterialPageRoute(builder: (_) => const ShoppingListsScreen())),
+          Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const ShoppingListsScreen()), (_) => false),
       loading: (state) => isLoading.value = true,
       orElse: () => isLoading.value = (state is Loading),
     );

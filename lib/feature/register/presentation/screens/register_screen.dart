@@ -27,7 +27,7 @@ class RegisterScreen extends BlocConsumerWidget<RegisterCubit, RegisterState> {
       },
       loading: (state) => isLoading.value = true,
       success: (state) {
-        Navigator.push(context, MaterialPageRoute(builder: (_) => const ShoppingListsScreen()));
+        Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const ShoppingListsScreen()), (_) => false);
         ScaffoldMessenger.of(context)
             .showSnackBar(const SnackBar(content: Text('Yippee')));
       },
