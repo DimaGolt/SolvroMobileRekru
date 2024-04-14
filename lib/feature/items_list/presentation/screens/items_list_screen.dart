@@ -29,7 +29,7 @@ class ItemsListScreen
       success: (state) {
         isLoading = false;
         items = state.items;
-        categories = items.map((e) => e.category).toSet().toList();
+        categories = List.of(state.categories);
       },
       orElse: () {},
     );
@@ -51,34 +51,39 @@ class ItemsListScreen
                   child: CircularProgressIndicator(),
                 ),
               )
-            : _body(),
+            : _body(bloc),
       ),
     );
   }
 
-  _body() {
+  _body(ItemsListCubit bloc) {
     return Column(
       children: [
-        Wrap(
-          spacing: 4,
-          children: categories
-              .map(
-                (e) => FilterChip(
-                  selected: e.show,
-                  label: Text(
-                    e.name,
-                    style: const TextStyle(color: Colors.white),
+        SizedBox(
+          height: 150,
+          child: Wrap(
+            spacing: 4,
+            children: categories
+                .map(
+                  (e) => ChoiceChip(
+                    selected: e.show,
+                    label: Text(
+                      e.name,
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                    onSelected: (show) {
+                      categories[categories.indexOf(e)] = e.copyWith(show: show);
+                      bloc.updateCategories(categories);
+                    },
                   ),
-                  onSelected: (show) {},
-                ),
-              )
-              .toList(),
+                )
+                .toList(),
+          ),
         ),
         const Divider(thickness: 2),
         Expanded(
           child: ListView.separated(
               shrinkWrap: true,
-              // physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (_, index) {
                 final item = items[index];
                 return ListTile(

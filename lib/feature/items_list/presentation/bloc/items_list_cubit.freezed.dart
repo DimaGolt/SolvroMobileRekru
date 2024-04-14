@@ -20,7 +20,9 @@ mixin _$ItemsListState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ShopItem> items) success,
+    required TResult Function(
+            List<ShopItem> items, List<ItemCategory> categories)
+        success,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +30,8 @@ mixin _$ItemsListState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ShopItem> items)? success,
+    TResult? Function(List<ShopItem> items, List<ItemCategory> categories)?
+        success,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +39,8 @@ mixin _$ItemsListState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ShopItem> items)? success,
+    TResult Function(List<ShopItem> items, List<ItemCategory> categories)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -126,7 +130,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ShopItem> items) success,
+    required TResult Function(
+            List<ShopItem> items, List<ItemCategory> categories)
+        success,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -137,7 +143,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ShopItem> items)? success,
+    TResult? Function(List<ShopItem> items, List<ItemCategory> categories)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -148,7 +155,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ShopItem> items)? success,
+    TResult Function(List<ShopItem> items, List<ItemCategory> categories)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -240,7 +248,9 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ShopItem> items) success,
+    required TResult Function(
+            List<ShopItem> items, List<ItemCategory> categories)
+        success,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -251,7 +261,8 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ShopItem> items)? success,
+    TResult? Function(List<ShopItem> items, List<ItemCategory> categories)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -262,7 +273,8 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ShopItem> items)? success,
+    TResult Function(List<ShopItem> items, List<ItemCategory> categories)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -320,7 +332,7 @@ abstract class _$$SuccessImplCopyWith<$Res> {
           _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
       __$$SuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({List<ShopItem> items});
+  $Res call({List<ShopItem> items, List<ItemCategory> categories});
 }
 
 /// @nodoc
@@ -335,12 +347,17 @@ class __$$SuccessImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? items = null,
+    Object? categories = null,
   }) {
     return _then(_$SuccessImpl(
       null == items
           ? _value._items
           : items // ignore: cast_nullable_to_non_nullable
               as List<ShopItem>,
+      null == categories
+          ? _value._categories
+          : categories // ignore: cast_nullable_to_non_nullable
+              as List<ItemCategory>,
     ));
   }
 }
@@ -348,7 +365,10 @@ class __$$SuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SuccessImpl implements Success {
-  const _$SuccessImpl(final List<ShopItem> items) : _items = items;
+  const _$SuccessImpl(
+      final List<ShopItem> items, final List<ItemCategory> categories)
+      : _items = items,
+        _categories = categories;
 
   final List<ShopItem> _items;
   @override
@@ -358,9 +378,17 @@ class _$SuccessImpl implements Success {
     return EqualUnmodifiableListView(_items);
   }
 
+  final List<ItemCategory> _categories;
+  @override
+  List<ItemCategory> get categories {
+    if (_categories is EqualUnmodifiableListView) return _categories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_categories);
+  }
+
   @override
   String toString() {
-    return 'ItemsListState.success(items: $items)';
+    return 'ItemsListState.success(items: $items, categories: $categories)';
   }
 
   @override
@@ -368,12 +396,16 @@ class _$SuccessImpl implements Success {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SuccessImpl &&
-            const DeepCollectionEquality().equals(other._items, _items));
+            const DeepCollectionEquality().equals(other._items, _items) &&
+            const DeepCollectionEquality()
+                .equals(other._categories, _categories));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_items));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_items),
+      const DeepCollectionEquality().hash(_categories));
 
   @JsonKey(ignore: true)
   @override
@@ -386,10 +418,12 @@ class _$SuccessImpl implements Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ShopItem> items) success,
+    required TResult Function(
+            List<ShopItem> items, List<ItemCategory> categories)
+        success,
     required TResult Function(String message) error,
   }) {
-    return success(items);
+    return success(items, categories);
   }
 
   @override
@@ -397,10 +431,11 @@ class _$SuccessImpl implements Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ShopItem> items)? success,
+    TResult? Function(List<ShopItem> items, List<ItemCategory> categories)?
+        success,
     TResult? Function(String message)? error,
   }) {
-    return success?.call(items);
+    return success?.call(items, categories);
   }
 
   @override
@@ -408,12 +443,13 @@ class _$SuccessImpl implements Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ShopItem> items)? success,
+    TResult Function(List<ShopItem> items, List<ItemCategory> categories)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(items);
+      return success(items, categories);
     }
     return orElse();
   }
@@ -457,9 +493,12 @@ class _$SuccessImpl implements Success {
 }
 
 abstract class Success implements ItemsListState {
-  const factory Success(final List<ShopItem> items) = _$SuccessImpl;
+  const factory Success(
+          final List<ShopItem> items, final List<ItemCategory> categories) =
+      _$SuccessImpl;
 
   List<ShopItem> get items;
+  List<ItemCategory> get categories;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -531,7 +570,9 @@ class _$FetchErrorImpl implements FetchError {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(List<ShopItem> items) success,
+    required TResult Function(
+            List<ShopItem> items, List<ItemCategory> categories)
+        success,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -542,7 +583,8 @@ class _$FetchErrorImpl implements FetchError {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(List<ShopItem> items)? success,
+    TResult? Function(List<ShopItem> items, List<ItemCategory> categories)?
+        success,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -553,7 +595,8 @@ class _$FetchErrorImpl implements FetchError {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(List<ShopItem> items)? success,
+    TResult Function(List<ShopItem> items, List<ItemCategory> categories)?
+        success,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
